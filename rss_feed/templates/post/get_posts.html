@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список Постов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .post:last-child {
+            border-bottom: none;
+        }
+        .post h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        .post p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .post .short-description {
+            font-style: italic;
+            color: #777;
+        }
+        .post .timestamps {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        .post a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .post a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Список Постов</h1>
+
+        {% for post in posts %}
+            <div class="post">
+                <h2><a href="{{ url_for('post.get_detail_post', post_id=post.id) }}">{{ post.name }}</a></h2>
+                <p class="short-description">{{ post.short_description }}</p>
+                <div class="timestamps">
+                    <p><strong>Создан:</strong> {{ post.created_at }}</p>
+                    <p><strong>Обновлен:</strong> {{ post.updated_at }}</p>
+                </div>
+            </div>
+        {% else %}
+            <p>Посты не найдены.</p>
+        {% endfor %}
+
+    </div>
+</body>
+</html>

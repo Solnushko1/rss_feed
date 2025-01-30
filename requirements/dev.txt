@@ -1,0 +1,87 @@
+# Everything the developer needs in addition to the production requirements
+
+# Flask
+# ------------------------------------------------------------------------------
+click>=7.0  # https://github.com/pallets/click
+Flask==3.1.0  # https://github.com/pallets/flask
+Werkzeug==3.1.3  # https://github.com/pallets/werkzeug
+
+# Database
+# ------------------------------------------------------------------------------
+Flask-SQLAlchemy==3.1.1  # https://github.com/pallets/flask-sqlalchemy
+psycopg2-binary==2.9.10  # https://github.com/psycopg/psycopg2
+SQLAlchemy==2.0.37  # https://github.com/sqlalchemy/sqlalchemy
+
+# Migrations
+# ------------------------------------------------------------------------------
+Flask-Migrate==4.1.0  # https://github.com/miguelgrinberg/Flask-Migrate
+
+# Forms
+# ------------------------------------------------------------------------------
+email-validator==2.2.0  # https://github.com/JoshData/python-email-validator
+Flask-WTF==1.2.2  # https://github.com/wtforms/flask-wtf
+WTForms==3.2.1  # https://github.com/wtforms/wtforms
+
+# Deployment
+# ------------------------------------------------------------------------------
+gevent==24.11.1  # https://github.com/gevent/gevent
+gunicorn>=19.9.0  # https://github.com/benoitc/gunicorn
+supervisor==4.2.5  # https://github.com/Supervisor/supervisor
+
+# Flask Static Digest
+# ------------------------------------------------------------------------------
+Flask-Static-Digest==0.4.1  # https://github.com/nickjj/flask-static-digest
+
+# Auth
+# ------------------------------------------------------------------------------
+Flask-Bcrypt==1.0.1  # https://github.com/maxcountryman/flask-bcrypt
+Flask-Login==0.6.3  # https://github.com/maxcountryman/flask-login
+
+# Caching
+# ------------------------------------------------------------------------------
+Flask-Caching>=2.0.2  # https://github.com/pallets-eco/flask-caching
+
+# Debug toolbar
+# ------------------------------------------------------------------------------
+Flask-DebugToolbar==0.16.0  # https://github.com/pallets-eco/flask-debugtoolbar
+
+# Environment variable parsing
+# ------------------------------------------------------------------------------
+environs==14.1.0  # https://github.com/sloria/environs
+
+# Testing
+# ------------------------------------------------------------------------------
+factory-boy==3.3.1  # https://github.com/FactoryBoy/factory_boy
+pytest==8.3.4  # https://github.com/pytest-dev/pytest
+pytest-cov==6.0.0  # https://github.com/pytest-dev/pytest-cov
+WebTest==3.0.3  # https://github.com/Pylons/webtest
+
+# Code quality
+# ------------------------------------------------------------------------------
+ruff==0.9.3  # https://github.com/astral-sh/ruff
+djlint==1.34.1  # https://github.com/Riverside-Healthcare/djLint
+pre-commit==4.1.0  # https://github.com/pre-commit/pre-commit
+mypy==1.14.1  # https://github.com/python/mypy
+black==24.10.0  # https://github.com/psf/black
+isort==5.13.2  # https://github.com/PyCQA/isort
+pep8-naming==0.14.1  # https://github.com/PyCQA/pep8-naming
+
+factory_boy~=3.3.1  # https://github.com/FactoryBoy/factory_boy
+marshmallow~=3.26.0  # https://github.com/marshmallow-code/marshmallow
+alembic~=1.14.1  # https://github.com/sqlalchemy/alembic
+
+starlette~=0.45.3  # https://github.com/encode/starlette
+
+# feedparser
+# ------------------------------------------------------------------------------
+feedparser==6.0.11 # https://github.com/kurtmckee/feedparser
+
+# requests
+# ------------------------------------------------------------------------------
+requests==2.32.3 # https://github.com/psf/requests
+types-requests==2.32.0.20241016  # https://github.com/python/typeshed/tree/main
+
+
+# ipython
+# ------------------------------------------------------------------------------
+ipython==8.31.0 # https://github.com/ipython/ipython

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .post {
+            margin-bottom: 20px;
+        }
+
+        .post h2 {
+            font-size: 30px;
+            color: #333;
+        }
+
+        .post .short-description {
+            font-style: italic;
+            color: #777;
+        }
+
+        .post .timestamps {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .post .content {
+            margin-top: 20px;
+            color: #555;
+        }
+
+        textarea {
+            resize: vertical;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 80%;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 18px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #1e7e34;
+            transform: scale(0.98);
+        }
+
+        .rephrased-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Детальный просмотр поста</h1>
+
+    <div class="post">
+        <h2>{{ post.name }}</h2>
+        <p class="short-description">{{ post.short_description }}</p>
+        <div class="timestamps">
+            <p><strong>Создан:</strong> {{ post.created_at }}</p>
+            <p><strong>Обновлен:</strong> {{ post.updated_at }}</p>
+        </div>
+        <div class="link">
+            <h3>Ссылка на статью:</h3>
+            <a href="{{ post.link }}" target="_blank" rel="noopener noreferrer">Перейти к статье</a>
+        </div>
+
+        <div class="text-input" style="text-align: center;">
+            <h4>Введите текст для преобразования статьи:</h4>
+            <textarea id="user_input" rows="10" placeholder="Введите здесь текст..."></textarea>
+        </div>
+
+        <div class="button-container" style="text-align: center; margin-top: 20px;">
+            <button id="rephrase-button">Перефразировать</button>
+        </div>
+
+        <div class="rephrased-text">
+            <h5>Перефразированный текст:</h5>
+            <textarea id="rephrased-text" rows="15" readonly></textarea>
+        </div>
+    </div>
+</div>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<script>
+        document.getElementById("rephrase-button").addEventListener("click", async () => {
+        const userInput = document.getElementById("user_input").value.trim();
+        const postId = {{ post.id | tojson }};
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+
+        if (!userInput) {
+        alert("Введите текст для преобразования!");
+        return;
+    }
+
+        try {
+        const response = await fetch("/send-request/", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken
+    },
+        body: JSON.stringify({post_id: postId, user_input: userInput})
+    });
+
+        const data = await response.json();
+        if (response.ok) {
+        document.getElementById("rephrased-text").value = data.rephrased_text;
+    } else {
+        alert(data.error);
+    }
+    } catch (error) {
+        console.error("Ошибка запроса:", error);
+        alert("Произошла ошибка. Попробуйте снова.");
+    }
+    });
+</script>
+
+</body>
+</html>
